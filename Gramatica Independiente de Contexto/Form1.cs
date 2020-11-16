@@ -35,7 +35,15 @@ namespace Gramatica_Independiente_de_Contexto
         private void buscar_Click(object sender, EventArgs e)
         {
             respuesta.Text = pertenece(cadena.Text);
-            respuesta.ForeColor = Color.Red;
+            if (respuesta.Text.Equals("Si"))
+            {
+                respuesta.ForeColor = Color.Green;
+            }
+            else
+            {
+                respuesta.ForeColor = Color.Red;
+            }
+            
         }
 
         public String pertenece(String cadenita)
