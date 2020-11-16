@@ -10,11 +10,61 @@ using System.Windows.Forms;
 
 namespace Gramatica_Independiente_de_Contexto
 {
-    public partial class Form1 : Form
+    public partial class VentanaPrincipal : Form
     {
-        public Form1()
+        public VentanaPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            respuesta.Text = pertenece(cadena.Text);
+            respuesta.ForeColor = Color.Red;
+        }
+
+        public String pertenece(String cadenita)
+        {
+
+            String texto = "";
+            Boolean seEncuentra = false;
+
+
+
+
+
+
+
+
+
+
+
+            if (seEncuentra==true)
+            {
+                texto = "Si";
+            }
+            else
+            {
+                texto = "No";
+            }
+
+            return texto;
+
         }
     }
 }
