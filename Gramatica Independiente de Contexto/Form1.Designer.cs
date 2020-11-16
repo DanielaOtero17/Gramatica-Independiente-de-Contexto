@@ -83,6 +83,7 @@
             this.gramaticaIngresada.Size = new System.Drawing.Size(339, 190);
             this.gramaticaIngresada.TabIndex = 3;
             this.gramaticaIngresada.Text = "S->a|b";
+            this.gramaticaIngresada.TextChanged += new System.EventHandler(this.gramaticaIngresada_TextChanged);
             // 
             // richTextBox2
             // 

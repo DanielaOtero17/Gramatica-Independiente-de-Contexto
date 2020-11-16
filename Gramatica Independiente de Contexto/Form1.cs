@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace Gramatica_Independiente_de_Contexto
 {
     public partial class VentanaPrincipal : Form
     {
+        List<Variable> variables = new List<Variable>();
+
         public VentanaPrincipal()
         {
             InitializeComponent();
@@ -52,15 +55,7 @@ namespace Gramatica_Independiente_de_Contexto
             String texto = "";
             Boolean seEncuentra = false;
 
-
-
-
-
-
-
-
-
-
+            hacerMatriz();
 
             if (seEncuentra==true)
             {
@@ -72,6 +67,57 @@ namespace Gramatica_Independiente_de_Contexto
             }
 
             return texto;
+
+        }
+
+        public void hacerMatriz()
+        {
+            if (File.Exists("gramatica.txt")){
+
+                File.Delete("gramatica.txt");
+            }
+            StreamWriter archivo = File.CreateText("gramatica.txt");
+            archivo.WriteLine(gramaticaIngresada.Text);
+            archivo.Close();
+
+            StreamReader lector = File.OpenText("gramatica.txt");
+
+            int n = 0;
+
+            String linea = lector.ReadLine();
+
+            while (linea != null)
+            {
+                String[] array = linea.Split('-');
+                Variable nueva = new Variable(array[0]);
+
+                String[] arrayTerminales = linea.Split('>');
+
+                String[] arrayProducciones = arrayTerminales[1].Split('|');
+
+                for(int i =0; i < arrayProducciones.Length; i++)
+                {
+                    Produccion nuevaProdu = new Produccion(arrayProducciones[i]);
+                    nueva.getProducciones().Add(nuevaProdu);
+                }
+
+                variables.Add(nueva);
+                n++;
+
+
+                linea = lector.ReadLine();
+            }
+
+            String[,] matriz = new String[n,n];
+            
+
+
+            lector.Close();
+
+        }
+
+        private void gramaticaIngresada_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
