@@ -302,15 +302,14 @@ namespace Gramatica_Independiente_de_Contexto
                                 String cambio = variableGeneradora(subcadenita[r]);
 
 
-                                if (!cambio.Equals(subcadenita[r]) || cambio.Contains(inicial.getNombre()))
+                                if (!cambio.Equals(subcadenita[r]) )
                                     siProduce = true;
 
-                                if (subcadenita[r].Equals(cambio))
+                                if (!cambio.Equals(subcadenita[r]))
                                 {
-                                    cambio = subcadenita[r].ElementAt(0)+"";
-                                }
+                                    siProduce = true;
 
-                                if (r < subcadenita.Length - 1)
+                                    if (r < subcadenita.Length - 1)
                                     {
                                         completa += cambio + ",";
                                     }
@@ -318,7 +317,9 @@ namespace Gramatica_Independiente_de_Contexto
                                     {
                                         completa += cambio;
                                     }
-                                
+
+                                }
+
                             }
 
                             if (siProduce == true)
@@ -363,14 +364,10 @@ namespace Gramatica_Independiente_de_Contexto
                             {
                                 String cambio = variableGeneradora(subcadenita[r]);
 
-
-                                if(!cambio.Equals(subcadenita[r]) || cambio.Contains(inicial.getNombre()))
+                                if(!cambio.Equals(subcadenita[r]))
+                                {
                                     siProduce = true;
 
-                                if (subcadenita[r].Equals(cambio))
-                                {
-                                    cambio = subcadenita[r].ElementAt(0) + "";
-                                }
                                     if (r < subcadenita.Length - 1)
                                     {
                                         completa += cambio + ",";
@@ -379,7 +376,9 @@ namespace Gramatica_Independiente_de_Contexto
                                     {
                                         completa += cambio;
                                     }
-                                
+
+                                }
+                                                                
                             }
 
                             if (siProduce==true )
@@ -388,7 +387,7 @@ namespace Gramatica_Independiente_de_Contexto
                             }
                             else
                             {
-                                matriz[i, j] = "-";
+                                matriz[i, j] = "";
                             }
                            
                         }
@@ -398,7 +397,8 @@ namespace Gramatica_Independiente_de_Contexto
 
                             String productora = variableGeneradora(pre_productora);
 
-                            if (!pre_productora.Equals(productora) || productora.Contains(inicial.getNombre()))
+
+                            if (!pre_productora.Equals(productora) )
                             {
                                 matriz[i, j] = productora;
                             }
@@ -408,8 +408,7 @@ namespace Gramatica_Independiente_de_Contexto
                             }
                                 
                         }
-
-                        
+  
                     }
                     c++;
                 }
@@ -423,7 +422,7 @@ namespace Gramatica_Independiente_de_Contexto
                 String fila = "";
                 for (int x = 0; x<n; x++)
                 {
-                    fila += matriz[i, x] + " | ";
+                    fila += matriz[i, x] + "     ";
                 }
 
                 proceso += fila +"\n";
@@ -442,6 +441,8 @@ namespace Gramatica_Independiente_de_Contexto
         public String variableGeneradora(String produccion)
         {
             Console.WriteLine("Producción que entra es: " + produccion);
+
+            String vars = "";
             for (int i = 0; i < variables.Count; i++)
             {
                 for (int j = 0; j < variables[i].getProducciones().Count; j++)
@@ -454,10 +455,20 @@ namespace Gramatica_Independiente_de_Contexto
                     if (aux.getProduccion().Equals(produccion))
                         {
 
-                            return variables[i].getNombre();
+                        vars += variables[i].getNombre() + ",";
+                            
                         } 
                 }
 
+            }
+          
+
+            if (vars.Length > 0)
+            {
+               
+                String nuv = vars.Remove(vars.Length - 1);
+           
+                return nuv;
             }
 
             return produccion;
