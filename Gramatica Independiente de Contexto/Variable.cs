@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Gramatica_Independiente_de_Contexto
 {
-    class Variable
+    public class Variable
     {
 
-        String nombre;
-        List<Produccion> producciones;
+        public String nombre;
+        public List<Produccion> producciones;
 
         public Variable(String nombre)
         {

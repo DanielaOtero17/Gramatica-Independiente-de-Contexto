@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gramatica_Independiente_de_Contexto
 {
-    class Produccion
+    public class Produccion
     {
-        String cadena;
+        private String cadena;
 
         public Produccion(String subcadena)
         {
